@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "../Form/Form";
 import ToDoInfo from "../Info/ToDoInfo";
 import ToDoItem from "../ToDoItem/ToDoItem";
@@ -9,7 +9,9 @@ import {v4 as uuidv4} from 'uuid';
 const ToDo = ()=>{
 
 const [text, setText] = useState('');
+const [searchText, setSearchText] = useState('');
 const [items, setItems] = useState([]);
+
 
 const handleAdd = ()=>{
 	const trimmedText = text.trim();
@@ -21,6 +23,7 @@ const handleAdd = ()=>{
 		label: text,
 		complete: false,
 	};
+
 
 	setItems(items => [...items, newItem]);
 	setText('');
@@ -36,6 +39,9 @@ const toggleComplete = (id)=>{
 const deleteAllButton = ()=>{
 setItems([])
 }
+
+const filteredItems = items.filter(item => item.label.toLowerCase().includes(searchText.toLocaleLowerCase()))
+
 
 	return(
 		<div className="todo-app">
@@ -57,6 +63,8 @@ setItems([])
 				type='text'
 				placeholder='Search Task'
 				hasButton={false}
+				text = {searchText}
+				setText ={setSearchText}
 			/>
 			<ToDoInfo
 				className='todo-app__info'
@@ -67,7 +75,8 @@ setItems([])
 			{}
 			<ToDoItems
 				toggleComplete={toggleComplete}
-			items={items}/>
+			items={filteredItems}
+			/>
 		</div>
 	)
 }
