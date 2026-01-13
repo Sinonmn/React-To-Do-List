@@ -12,7 +12,10 @@ const [text, setText] = useState('');
 const [items, setItems] = useState([]);
 
 const handleAdd = ()=>{
-	if(!text.trim()) return;
+	const trimmedText = text.trim();
+	if(!trimmedText) return;
+	const exists = items.some(item => item.label.toLowerCase() === trimmedText.toLowerCase())
+	if(exists) return;
 	const newItem = {
 		id: uuidv4(),
 		label: text,
@@ -23,7 +26,16 @@ const handleAdd = ()=>{
 	setText('');
 }
 
+const toggleComplete = (id)=>{
+	setItems(prevItems =>
+		prevItems.map(item => item.id === id ? {...item, complete: !item.complete} : item)
+	)
 
+}
+
+const deleteAllButton = ()=>{
+setItems([])
+}
 
 	return(
 		<div className="todo-app">
@@ -48,11 +60,13 @@ const handleAdd = ()=>{
 			/>
 			<ToDoInfo
 				className='todo-app__info'
-				total='1010'
+				total={items.length}
+				deleteAllButton = {deleteAllButton}
 			/>
 
-			{/* Список задач */}
+			{}
 			<ToDoItems
+				toggleComplete={toggleComplete}
 			items={items}/>
 		</div>
 	)

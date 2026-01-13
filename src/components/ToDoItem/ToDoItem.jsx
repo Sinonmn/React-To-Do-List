@@ -5,13 +5,15 @@ const ToDoItem = (props) => {
 		className,
 		label,
 		complete,
-		onToggle,
-		id 
+		id,
+		toggleComplete,
 	} = props
 	return (
-		<div key={id} className={`${className} todo-app__item`} onClick={onToggle}>
-			<label className="todo-app__label">
-				<input
+		<div onClick={() => toggleComplete(id)}  key={id} className={`${className} todo-app__item`} >
+			<label style={{cursor:'pointer'}}  onClick={(e)=>{
+				e.preventDefault();
+			}} className="todo-app__label">
+				<input style={{cursor: 'pointer'}}
 					type="checkbox"
 					className="todo-app__checkbox"
 					checked={complete}

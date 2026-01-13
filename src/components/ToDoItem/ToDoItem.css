@@ -1,11 +1,11 @@
 .todo-app__item {
 	display: flex;
-	align-items: center;
-	padding: 10px;
-	border: 1px solid #eee;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.2s;
+		align-items: center;
+		padding: 10px;
+		border: 1px solid #eee;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background-color 0.2s;
 }
 
 .todo-app__item:hover {
@@ -16,7 +16,6 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	width: 100%;
 }
 
 .todo-app__checkbox {
@@ -28,6 +27,7 @@
 .todo-app__text {
 	font-size: 16px;
 	color: #333;
+	user-select: none;
 }
 
 .todo-app__text--completed {
