@@ -33,7 +33,6 @@ const {
 						key={page}
 						onClick={() => setCurrentPage(page)}
 						className={page === currentPage ? "active" : ""}
-
 						style={{ fontWeight: page === currentPage ? "bold" : "normal" }}
 					>
 						

@@ -13,6 +13,11 @@ const [searchText, setSearchText] = useState('');
 const [items, setItems] = useState([]);
 
 
+useEffect(() => {
+	const savedItems = JSON.parse(localStorage.getItem('todos')) || [];
+	setItems(prev => savedItems);
+},[])
+
 
 const handleAdd = ()=>{
 	const trimmedText = text.trim();
@@ -25,14 +30,22 @@ const handleAdd = ()=>{
 		complete: false,
 	};
 
-
-	setItems(items => [...items, newItem]);
+	setItems(items =>{
+		const updatedItems = [...items, newItem]
+		localStorage.setItem('todos', JSON.stringify(updatedItems));
+		return updatedItems;
+	}
+	);
 	setText('');
 }
 
 const toggleComplete = (id)=>{
 	setItems(prevItems =>
-		prevItems.map(item => item.id === id ? {...item, complete: !item.complete} : item)
+	{
+		const updatedItems = prevItems.map(item => item.id === id ? { ...item, complete: !item.complete } : item);
+		localStorage.setItem('todos', JSON.stringify(updatedItems));
+		return updatedItems;
+	}
 	)
 
 }
