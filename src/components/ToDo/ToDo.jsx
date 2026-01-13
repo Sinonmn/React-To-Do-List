@@ -13,6 +13,7 @@ const [searchText, setSearchText] = useState('');
 const [items, setItems] = useState([]);
 
 
+
 const handleAdd = ()=>{
 	const trimmedText = text.trim();
 	if(!trimmedText) return;
@@ -40,7 +41,26 @@ const deleteAllButton = ()=>{
 setItems([])
 }
 
-const filteredItems = items.filter(item => item.label.toLowerCase().includes(searchText.toLocaleLowerCase()))
+	const itemsPerPage = 5;
+	const [currentPage, setCurrentPage] = useState(1);
+
+
+	const filteredItems = items.filter(item =>
+		item.label.toLowerCase().includes(searchText.toLowerCase())
+	);
+
+	const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const endIndex = startIndex + itemsPerPage;
+	const itemsToShow = filteredItems.slice(startIndex, endIndex);
+
+
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [searchText]);
+	
+
+
 
 
 	return(
@@ -75,8 +95,14 @@ const filteredItems = items.filter(item => item.label.toLowerCase().includes(sea
 			{}
 			<ToDoItems
 				toggleComplete={toggleComplete}
-			items={filteredItems}
+			items={itemsToShow}
+			totalPages={totalPages}
+			currentPage = {currentPage}
+			startIndex = {startIndex}
+			endIndex = {endIndex}
+			setCurrentPage = {setCurrentPage}
 			/>
+			
 		</div>
 	)
 }
