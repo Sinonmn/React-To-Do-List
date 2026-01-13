@@ -6,18 +6,29 @@ const Form = (props)=>{
 		className,
 		type,
 		placeholder,
-		onSubmit,
 		hasButton = true,
+		text,
+		handleAdd,
+		setText,
+		
 	} = props
 
+	const onSubmit = (e) => {
+		e.preventDefault();
+		handleAdd();
+	}
 	return(
-		<form className= {className}>
+
+
+		<form onSubmit={onSubmit } className= {className}>
 			<input
+				value={text}
+				onChange={(e) => setText(e.target.value)}
 				type={type}
 				placeholder={placeholder}
 				className="todo-app__input"
 			/>
-			{hasButton && <button type="submit" className="todo-app__button button">Add</button>}
+			{hasButton && <button onClick={handleAdd} type="submit" className="todo-app__button button">Add</button>}
 		</form>
 	)
 }

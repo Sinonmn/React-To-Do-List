@@ -1,0 +1,19 @@
+.todo-app {
+	width: 60vw;
+
+	max-width: 600px;
+
+	min-width: 300px;
+
+	padding: 20px;
+
+	border: 1px solid #ccc;
+
+	border-radius: 8px;
+	background-color: #fff;
+}
+.todo-app__title{
+	margin-bottom: 40px;
+	display: flex;
+	justify-content: center;
+}
