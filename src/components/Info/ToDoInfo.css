@@ -1,0 +1,30 @@
+.todo-app__info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+	padding: 8px 10px;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	font-size: 14px;
+}
+
+.todo-app__total {
+	color: #333;
+	font-weight: 500;
+}
+
+.todo-app__delete-all {
+	background-color: #dc3545;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.todo-app__delete-all:hover {
+	background-color: #a71d2a;
+}
