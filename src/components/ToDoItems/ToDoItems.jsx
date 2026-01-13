@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ToDoItem from "../ToDoItem/ToDoItem"
 import './ToDoItems.css'
 
@@ -9,9 +8,8 @@ const {
 	toggleComplete,
 	totalPages,
 	currentPage,
-	startIndex ,
-	endIndex ,
-	setCurrentPage
+	setCurrentPage,
+	deleteTask,
 } = props
 
 
@@ -21,6 +19,7 @@ const {
 		<div className="todo-app__items">
 			{items.map(item =>
 				<ToDoItem 
+					deleteTask={deleteTask}
 				key = {item.id}
 				label = {item.label}
 				complete={item.complete}

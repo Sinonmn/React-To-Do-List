@@ -34,3 +34,12 @@
 	text-decoration: line-through;
 	color: #999;
 }
+
+.todo-app_delete-button{
+	cursor: pointer;
+	position: relative;
+	z-index: 1000;
+	margin-left: auto ;
+	background-color: transparent;
+	border: none;
+}

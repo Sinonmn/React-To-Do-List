@@ -41,6 +41,12 @@ const deleteAllButton = ()=>{
 setItems([])
 }
 
+const deleteTask = (id)=>{
+	setItems(prevItems =>
+		prevItems.filter(item => item.id !== id)
+	)
+}
+
 	const itemsPerPage = 5;
 	const [currentPage, setCurrentPage] = useState(1);
 
@@ -94,6 +100,7 @@ setItems([])
 
 			{}
 			<ToDoItems
+				deleteTask={deleteTask}
 				toggleComplete={toggleComplete}
 			items={itemsToShow}
 			totalPages={totalPages}
