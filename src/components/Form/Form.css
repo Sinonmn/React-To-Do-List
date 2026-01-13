@@ -9,7 +9,6 @@
 
 .todo-app__input {
 	flex: 1;
-	/* чтобы input растягивался на всю ширину */
 	padding: 8px 10px;
 	border: 1px solid #ccc;
 	border-radius: 4px;

@@ -5,12 +5,17 @@ import ToDoItem from "../ToDoItem/ToDoItem";
 import ToDoItems from "../ToDoItems/ToDoItems";
 import './ToDo.css';
 import {v4 as uuidv4} from 'uuid';
+import ToDoFilters from "../ToDoFilters/ToDoFilters";
+
 
 const ToDo = ()=>{
 
 const [text, setText] = useState('');
 const [searchText, setSearchText] = useState('');
 const [items, setItems] = useState([]);
+const [sortItems, setSortItems] = useState('all');
+
+
 
 
 useEffect(() => {
@@ -56,7 +61,12 @@ setItems([])
 
 const deleteTask = (id)=>{
 	setItems(prevItems =>
-		prevItems.filter(item => item.id !== id)
+	{
+		
+		const tasks = prevItems.filter(item => item.id !== id)
+		localStorage.setItem('todos', JSON.stringify(tasks));
+		return tasks
+	}
 	)
 }
 
@@ -64,7 +74,15 @@ const deleteTask = (id)=>{
 	const [currentPage, setCurrentPage] = useState(1);
 
 
-	const filteredItems = items.filter(item =>
+	const filteredItems = items
+	.filter(item => {
+		if (sortItems === 'all') return true;
+		if (sortItems === 'active') return !item.complete;
+		if (sortItems === 'complete') return item.complete;
+	})
+	
+	
+	.filter(item =>
 		item.label.toLowerCase().includes(searchText.toLowerCase())
 	);
 
@@ -76,7 +94,7 @@ const deleteTask = (id)=>{
 
 	useEffect(() => {
 		setCurrentPage(1);
-	}, [searchText]);
+	}, [searchText, sortItems]);
 	
 
 
@@ -110,6 +128,9 @@ const deleteTask = (id)=>{
 				total={items.length}
 				deleteAllButton = {deleteAllButton}
 			/>
+			{items.length > 0 && <ToDoFilters 
+				setSortItems={setSortItems}
+			/>}
 
 			{}
 			<ToDoItems
