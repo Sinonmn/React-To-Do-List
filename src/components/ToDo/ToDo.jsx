@@ -2,6 +2,7 @@ import { useState } from "react";
 import Form from "../Form/Form";
 import ToDoInfo from "../Info/ToDoInfo";
 import ToDoItem from "../ToDoItem/ToDoItem";
+import ToDoItems from "../ToDoItems/ToDoItems";
 import './ToDo.css';
 import {v4 as uuidv4} from 'uuid';
 
@@ -51,19 +52,8 @@ const handleAdd = ()=>{
 			/>
 
 			{/* Список задач */}
-			<div className="todo-app__items">
-				<ToDoItem
-					className='todo-app__item'
-					type='checkbox'
-					label='dsada'
-					complete={true} />
-				<ToDoItem
-					className='todo-app__item'
-					type='checkbox'
-					label='dsada'
-					complete={false} />
-
-			</div>
+			<ToDoItems
+			items={items}/>
 		</div>
 	)
 }

@@ -1,8 +1,15 @@
 import './ToDoItem.css'
 
-const ToDoItem = ({ className, label, complete, onToggle }) => {
+const ToDoItem = (props) => {
+	const{
+		className,
+		label,
+		complete,
+		onToggle,
+		id 
+	} = props
 	return (
-		<div className={`${className} todo-app__item`} onClick={onToggle}>
+		<div key={id} className={`${className} todo-app__item`} onClick={onToggle}>
 			<label className="todo-app__label">
 				<input
 					type="checkbox"
