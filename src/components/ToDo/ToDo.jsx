@@ -56,7 +56,11 @@ const toggleComplete = (id)=>{
 }
 
 const deleteAllButton = ()=>{
-setItems([])
+setItems(prev=>{
+	const tasks = []
+	localStorage.setItem('todos', JSON.stringify(tasks));
+	return tasks;
+})
 }
 
 const deleteTask = (id)=>{
